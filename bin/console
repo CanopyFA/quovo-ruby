@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'quovo'
+require 'pry'
+require 'httplog'
+require 'json'
+
+def set_config
+  Quovo.configure do |config|
+    config.username = ARGV[0]
+    config.password = ARGV[1]
+    config.debug    = true
+    config.token_storage = Object.new.tap do |o|
+      def o.path
+        '../.storage'
+      end
+
+      def o.storage
+        @storage ||= begin
+                       data = File.exist?(path) ? File.read(path) : nil
+                       data ? JSON.parse(data) : {}
+                     end
+      end
+
+      def o.read(key)
+        storage[key]
+      end
+
+      def o.write(key, value)
+        storage[key] = value
+        File.write(path, storage.to_json)
+      end
+    end
+  end
+end
+
+def reload!
+  Quovo.instance_variables.each do |var|
+    Quovo.instance_variable_set(var, nil)
+  end
+  Quovo.clear_hooks!
+  original_verbose, $VERBOSE = $VERBOSE, nil
+  $LOADED_FEATURES.
+    select { |file| file =~ /\/quovo\// }.
+    each { |file| load(file) }
+  $VERBOSE = original_verbose
+  set_config
+  'Reloaded!'
+end
+
+set_config
+Pry.start
