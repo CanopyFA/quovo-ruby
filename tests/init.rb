@@ -1,15 +1,11 @@
-if ENV['COVERAGE'] 
-  require 'simplecov'
-  SimpleCov.start do 
-    add_filter "/tests/"
-  end
-end
+require 'coveralls'
+Coveralls.wear!
 
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'quovo'
 
-Quovo.fake!([])
+Quovo.fake!
 
 class TestApi < Minitest::Test
 

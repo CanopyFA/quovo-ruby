@@ -4,5 +4,6 @@ gemspec
 
 gem 'bundler'
 gem 'rake'
-gem 'minitest'
-gem 'pry'
+gem 'minitest',  require: false
+gem 'coveralls', require: false
+gem 'pry',       require: false
