@@ -24,6 +24,7 @@ module Quovo
         value
       ]
 
+      undef :date
       def date
         @date.to_time
       end

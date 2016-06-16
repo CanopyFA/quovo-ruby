@@ -14,6 +14,8 @@ module Quovo
       @prefix   = prefix
       @username = username
       @password = password
+      @token    = nil
+      @expires  = nil
     end
 
     def get
@@ -39,8 +41,9 @@ module Quovo
       return payload.fetch('token'), payload.fetch('expires').to_time.utc
     end
 
-    private
     attr_reader :storage, :ttl, :prefix, :username, :password
+
+    private
 
     STORAGE_KEY = 'quovo-access-token'
     SPLITTER = '|'

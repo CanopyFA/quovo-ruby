@@ -1,6 +1,7 @@
 # Quovo
 
 Quovo RESTful API ruby client.
+
 [![Build Status](https://travis-ci.org/CanopyFA/quovo-ruby.svg?branch=master)](https://travis-ci.org/CanopyFA/quovo-ruby)  [![Coverage Status](https://coveralls.io/repos/github/CanopyFA/quovo-ruby/badge.svg?branch=master)](https://coveralls.io/github/CanopyFA/quovo-ruby?branch=master)
 
 ## Installation

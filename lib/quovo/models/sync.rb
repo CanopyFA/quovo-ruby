@@ -11,6 +11,7 @@ module Quovo
         status
       ]
 
+      undef :progress
       def progress
         @progress.cast(Progress)
       end

@@ -33,9 +33,9 @@ module Quovo
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       begin
-        http.start do |http|
+        http.start do |channel|
           start_at   = Time.now
-          response   = http.request(request)
+          response   = channel.request(request)
           finish_at  = Time.now
           body       = response.body
           code       = response.code

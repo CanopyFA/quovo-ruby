@@ -41,6 +41,7 @@ module Quovo
         value
       ]
 
+      undef :last_change
       def last_change
         @last_change.to_time
       end

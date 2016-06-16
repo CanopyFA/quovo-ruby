@@ -27,6 +27,7 @@ module Quovo
         value
       ]
 
+      undef :last_purchase_date
       def last_purchase_date
         @last_purchase_date.to_time
       end

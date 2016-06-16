@@ -1,6 +1,11 @@
 require 'init'
 class TestToken < Minitest::Test
   class Storage
+    def initialize
+      @read = false
+      @write = false
+    end
+
     def read?; !!@read; end
     def write?; !!@write; end
 

@@ -21,8 +21,8 @@ module Quovo
         end || {}
       end
 
-      private
       attr_reader :token
+
     end
   end
 end

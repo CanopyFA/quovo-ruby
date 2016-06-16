@@ -15,14 +15,17 @@ module Quovo
         image_choices
       ]
 
+      undef :image
       def image
         @image.cast(Image)
       end
 
+      undef :choices
       def choices
         @choices.cast(Choice)
       end
 
+      undef :image_choices
       def image_choices
         @image_choices.cast(Image)
       end
