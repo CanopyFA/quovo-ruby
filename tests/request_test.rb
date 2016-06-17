@@ -44,6 +44,19 @@ class TestRequest < Minitest::Test
     end
   end
 
+  def test_request_get_with_params
+    http_transport.code = '200'
+    request(:get, '/accounts', { attr: 'test' }, :plain)
+    assert_equal('attr=test', http_transport.req.uri.query)
+  end
+
+  def test_request_post_with_params
+    params = { 'attr' => 'test' }
+    http_transport.code = '200'
+    request(:post, '/accounts', params, :plain)
+    assert_equal(params, JSON.parse(http_transport.req.body))
+  end
+
   def test_request_unkwown_method
     assert_raises(Quovo::HttpError) do
       request(:path, '/accounts', {})
@@ -80,13 +93,14 @@ class TestRequest < Minitest::Test
   end
 
   class FakeHttp
-    attr_accessor :read_timeout, :use_ssl, :verify_mode, :body, :code, :timeout
+    attr_accessor :read_timeout, :use_ssl, :verify_mode, :body, :code, :timeout, :req
 
     def start
       yield(self)
     end
 
-    def request(_)
+    def request(request)
+      @req = request
       raise Timeout::Error, '' if timeout
       self
     end
