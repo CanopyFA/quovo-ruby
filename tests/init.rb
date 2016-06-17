@@ -8,7 +8,6 @@ require 'quovo'
 Quovo.fake!
 
 class TestApi < Minitest::Test
-
   def instance(model, *args)
     props = model.fields.zip(args)
     model.new(props).to_h

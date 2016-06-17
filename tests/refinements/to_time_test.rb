@@ -8,7 +8,7 @@ class TestToTime < Minitest::Test
   end
 
   def test_to_time_ok
-    str = "2015-05-05"
+    str = '2015-05-05'
     actual = str.to_time
     assert_equal(Time.parse(str), actual)
   end

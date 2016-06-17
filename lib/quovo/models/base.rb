@@ -1,6 +1,6 @@
 module Quovo
   module Models
-    class Base 
+    class Base
       extend ::Forwardable
       def_delegators :to_h, :fetch, :to_json
       def self.fields(fields = nil)

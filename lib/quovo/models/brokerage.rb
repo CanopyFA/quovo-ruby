@@ -1,7 +1,7 @@
 module Quovo
   module Models
     class Brokerage < Base
-      fields %i[
+      fields %i(
         id
         is_test
         name
@@ -9,7 +9,7 @@ module Quovo
         password
         username
         website
-      ]
+      )
     end
   end
 end

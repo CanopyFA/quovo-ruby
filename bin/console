@@ -3,10 +3,9 @@
 require 'bundler/setup'
 require 'quovo'
 require 'pry'
-require 'httplog'
 require 'json'
 
-def set_config
+def reconfigure!
   Quovo.configure do |config|
     config.username = ARGV[0]
     config.password = ARGV[1]
@@ -40,14 +39,15 @@ def reload!
     Quovo.instance_variable_set(var, nil)
   end
   Quovo.clear_hooks!
-  original_verbose, $VERBOSE = $VERBOSE, nil
-  $LOADED_FEATURES.
-    select { |file| file =~ /\/quovo\// }.
-    each { |file| load(file) }
+  original_verbose = $VERBOSE
+  $VERBOSE = nil
+  $LOADED_FEATURES
+    .select { |file| file =~ %r{\/quovo\/} }
+    .each { |file| load(file) }
   $VERBOSE = original_verbose
-  set_config
+  reconfigure!
   'Reloaded!'
 end
 
-set_config
+reconfigure!
 Pry.start

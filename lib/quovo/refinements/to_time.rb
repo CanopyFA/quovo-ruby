@@ -9,7 +9,7 @@ module Quovo
           when NilClass
             nil
           else
-            raise "cannot convert #{self.inspect} to time"
+            raise "cannot convert #{inspect} to time"
           end
         end
       end

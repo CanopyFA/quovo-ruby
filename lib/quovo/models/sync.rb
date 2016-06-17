@@ -3,13 +3,13 @@ module Quovo
     class Sync < Base
       using Quovo::Refinements::Cast
 
-      fields %i[
+      fields %i(
         account
         has_realtime
         config_instructions
         progress
         status
-      ]
+      )
 
       undef :progress
       def progress

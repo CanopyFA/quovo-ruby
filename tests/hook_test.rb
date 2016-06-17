@@ -6,7 +6,7 @@ class TestHook < Minitest::Test
 
   def test_simple_hook
     hooked = false
-    Quovo.hook do |*agrs|
+    Quovo.hook do
       hooked = true
     end
     assert_equal(Quovo.hooks.length, 1)
@@ -16,7 +16,7 @@ class TestHook < Minitest::Test
   end
 
   def test_clear_all_hooks
-    Quovo.hook do |*agrs|
+    Quovo.hook do
     end
     assert_equal(Quovo.hooks.length, 1)
     Quovo.clear_hooks!
@@ -33,4 +33,3 @@ class TestHook < Minitest::Test
     assert_equal(Quovo.hooks.length, 1)
   end
 end
-

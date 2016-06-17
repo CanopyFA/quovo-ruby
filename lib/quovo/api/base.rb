@@ -22,7 +22,6 @@ module Quovo
       end
 
       attr_reader :token
-
     end
   end
 end

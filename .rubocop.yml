@@ -1,2 +1,12 @@
 Style/Documentation:
   Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/ParameterLists:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false
+Metrics/AbcSize:
+  Exclude:
+    - 'bin/console'
+    - 'tests/**'

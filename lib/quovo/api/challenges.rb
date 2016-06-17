@@ -6,9 +6,9 @@ module Quovo
 
       def for_account(id)
         id.require!(as: :id)
-        api(:get, "/accounts/#{id}/challenges").
-         fetch('challenges').
-         cast(Challenge)
+        api(:get, "/accounts/#{id}/challenges")
+          .fetch('challenges')
+          .cast(Challenge)
       end
 
       def answers!(account_id, answers)
@@ -19,9 +19,9 @@ module Quovo
         end
 
         params = { questions: answers.to_json }
-        api(:put, "/accounts/#{account_id}/challenges", params).
-          fetch('challenges').
-          cast(Challenge)
+        api(:put, "/accounts/#{account_id}/challenges", params)
+          .fetch('challenges')
+          .cast(Challenge)
       end
     end
   end

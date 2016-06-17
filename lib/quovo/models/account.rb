@@ -3,7 +3,7 @@ module Quovo
     class Account < Base
       using Quovo::Refinements::ToTime
 
-      fields %i[
+      fields %i(
         id
         nickname
         is_inactive
@@ -18,7 +18,7 @@ module Quovo
         update_count
         opened
         updated
-      ]
+      )
 
       undef :opened
       def opened

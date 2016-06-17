@@ -3,7 +3,7 @@ module Quovo
     class Position < Base
       using Quovo::Refinements::ToTime
 
-      fields %i[
+      fields %i(
         account
         asset_class
         cost_basis
@@ -25,7 +25,7 @@ module Quovo
         user
         username
         value
-      ]
+      )
 
       undef :last_purchase_date
       def last_purchase_date

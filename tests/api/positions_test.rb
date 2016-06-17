@@ -1,6 +1,5 @@
 require 'init'
 class TestApiPositions < TestApi
-
   def test_positions_for_user
     id = 1
     expected = [
@@ -8,7 +7,7 @@ class TestApiPositions < TestApi
       simple_position(2),
       simple_position(3)
     ]
-    fake(:get, "/users/#{id}/positions", {}, { 'positions' => expected })
+    fake(:get, "/users/#{id}/positions", {}, 'positions' => expected)
 
     actual = Quovo.positions.for_user(id)
     assert_equal(actual.length, 3)
@@ -23,7 +22,7 @@ class TestApiPositions < TestApi
       simple_position(2),
       simple_position(3)
     ]
-    fake(:get, "/accounts/#{id}/positions", {}, { 'positions' => expected })
+    fake(:get, "/accounts/#{id}/positions", {}, 'positions' => expected)
 
     actual = Quovo.positions.for_account(id)
     assert_equal(actual.length, 3)
@@ -38,7 +37,7 @@ class TestApiPositions < TestApi
       simple_position(2),
       simple_position(3)
     ]
-    fake(:get, "/portfolios/#{id}/positions", {}, { 'positions' => expected })
+    fake(:get, "/portfolios/#{id}/positions", {}, 'positions' => expected)
 
     actual = Quovo.positions.for_portfolio(id)
     assert_equal(actual.length, 3)
@@ -51,7 +50,7 @@ class TestApiPositions < TestApi
     instance(Quovo::Models::Position, *args)
   end
 
-  def simple_position(i)        
-    position(1, "Large Cap Equity", nil, nil, nil, "037833100", 1.0, i, "2015-05-05", "NSD", 746745, "test port", 105.19, 12.0, "Technology", "Equity", "AAPL", "Apple Inc", 1, "quovo_test_user", 1262.28)
+  def simple_position(i)
+    position(1, 'Large Cap Equity', nil, nil, nil, '037833100', 1.0, i, '2015-05-05', 'NSD', 746_745, 'test port', 105.19, 12.0, 'Technology', 'Equity', 'AAPL', 'Apple Inc', 1, 'quovo_test_user', 1_262.28)
   end
 end

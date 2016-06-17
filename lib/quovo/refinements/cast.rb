@@ -7,13 +7,13 @@ module Quovo
           when Hash
             model.new(self)
           when Array
-            self.map do |entry|
+            map do |entry|
               entry.cast(model)
             end
           when NilClass
             nil
           else
-            raise 'unknown source type for casting' 
+            raise 'unknown source type for casting'
           end
         end
       end

@@ -6,7 +6,7 @@ class TestRequest < Minitest::Test
     include Quovo::Request
   end
 
-  def http_transport(host = nil, port = nil)
+  def http_transport(_ = nil)
     @fake_http ||= FakeHttp.new
   end
 
@@ -21,7 +21,7 @@ class TestRequest < Minitest::Test
 
   def test_real_request_transport
     uri = URI(Quovo.config.endpoint)
-    assert_instance_of(Net::HTTP, RealRequest.new.http_transport(uri.host, uri.port))
+    assert_instance_of(Net::HTTP, RealRequest.new.http_transport(uri))
   end
 
   def test_request_plain
@@ -37,7 +37,7 @@ class TestRequest < Minitest::Test
   def test_request_json
     http_transport.code = '200'
     [:get, :post, :put, :delete].each do |method|
-      body = { "method" => method.to_s }
+      body = { 'method' => method.to_s }
       http_transport.body = body.to_json
       result = request(method, '/accounts', {}, :json)
       assert_equal(body, result)
@@ -52,7 +52,7 @@ class TestRequest < Minitest::Test
 
   def test_request_timeout
     http_transport.timeout = true
-    assert_raises(Quovo::HttpError) do
+    assert_raises(Timeout::Error) do
       request(:get, '/accounts', {})
     end
     http_transport.timeout = false
@@ -86,9 +86,8 @@ class TestRequest < Minitest::Test
       yield(self)
     end
 
-
-    def request(method)
-      raise Timeout::Error.new if timeout
+    def request(_)
+      raise Timeout::Error, '' if timeout
       self
     end
   end

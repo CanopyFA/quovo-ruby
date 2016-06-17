@@ -4,13 +4,12 @@ module Quovo
     attr_accessor :password
     attr_accessor :token_ttl       # seconds
     attr_accessor :request_timeout # seconds
-    attr_accessor :token_prefix    
+    attr_accessor :token_prefix
     attr_accessor :token_storage
     attr_accessor :debug
     attr_accessor :strip_sensitive_params
 
-    DEFAULT_ENDPOINT = 'https://api.quovo.com/v2'
-
+    DEFAULT_ENDPOINT = 'https://api.quovo.com/v2'.freeze
 
     def initialize
       @username               = nil
@@ -50,11 +49,11 @@ module Quovo
         end
 
         def o.read(key)
-          self.storage[key]
+          storage[key]
         end
 
         def o.write(key, value)
-          self.storage[key] = value
+          storage[key] = value
         end
       end
     end

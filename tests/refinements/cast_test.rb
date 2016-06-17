@@ -12,14 +12,14 @@ class TestCast < Minitest::Test
   end
 
   def test_cast_obj
-    expected = {a: 1, b: 2}
+    expected = { a: 1, b: 2 }
     actual = expected.cast(Foo)
     assert_instance_of(Foo, actual)
     assert_equal(expected, actual.to_h)
   end
 
   def test_cast_array
-    expected = [{a: 1, b: 2}]
+    expected = [{ a: 1, b: 2 }]
     actual = expected.cast(Foo)
     assert_equal(actual.length, 1)
     assert_instance_of(Foo, actual[0])

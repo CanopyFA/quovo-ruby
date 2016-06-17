@@ -16,7 +16,7 @@ class TestScope < Minitest::Test
 
     Quovo.scope(foo: 1) do
       Quovo.scope(bar: 2) do
-        assert_equal(Quovo.current_scope, {foo: 1, bar: 2})
+        assert_equal(Quovo.current_scope, foo: 1, bar: 2)
       end
     end
   end

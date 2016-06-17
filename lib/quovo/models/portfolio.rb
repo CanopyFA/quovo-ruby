@@ -4,24 +4,24 @@ module Quovo
       using Quovo::Refinements::ToTime
       CATEGORIES = {
         'Investment' => %w(
-                            401a 401k 403b 457b 529
-                            Brokerage\ Account
-                            Education\ Savings\ Account
-                            Health\ Savings\ Account
-                            IRA
-                            Non-Taxable\ Brokerage\ Account
-                            Pension
-                            Roth\ IRA Roth\ 401k Simple\ IRA SEP\ IRA
-                            Thrift\ Savings\ Plan
-                            Profit\ Sharing\ Plan
-                          ),
+          401a 401k 403b 457b 529
+          Brokerage\ Account
+          Education\ Savings\ Account
+          Health\ Savings\ Account
+          IRA
+          Non-Taxable\ Brokerage\ Account
+          Pension
+          Roth\ IRA Roth\ 401k Simple\ IRA SEP\ IRA
+          Thrift\ Savings\ Plan
+          Profit\ Sharing\ Plan
+        ),
         'Banking'    => %w(Checking Credit\ Card Savings),
         'Insurance'  => %w(Annuity Fixed\ Annuity Insurance Variable\ Annuity),
         'Loan'       => %w(Loan Mortgage Student\ Loan),
         'Unknown'    => %w(Unknown)
-      }
+      }.freeze
 
-      fields %i[
+      fields %i(
         id
         account
         brokerage
@@ -39,7 +39,7 @@ module Quovo
         user
         username
         value
-      ]
+      )
 
       undef :last_change
       def last_change

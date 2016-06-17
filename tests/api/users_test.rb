@@ -1,13 +1,12 @@
 require 'init'
 class TestApiUsers < TestApi
-
   def test_users_all
     expected = [
       simple_user(1),
       simple_user(2),
       simple_user(3)
     ]
-    fake(:get, "/users", {}, { 'users' => expected })
+    fake(:get, '/users', {}, 'users' => expected)
 
     actual = Quovo.users.all
     assert_equal(actual.length, 3)
@@ -18,7 +17,7 @@ class TestApiUsers < TestApi
   def test_users_find
     id       = 1
     expected = simple_user(id)
-    fake(:get, "/users/#{id}", {}, { 'user' => expected })
+    fake(:get, "/users/#{id}", {}, 'user' => expected)
 
     actual = Quovo.users.find(id)
     assert_type([actual], Quovo::Models::User)
@@ -26,9 +25,9 @@ class TestApiUsers < TestApi
   end
 
   def test_users_create
-    params   = {username: 'quovo_test_user', name: 'Quovo Testuser', email: 'testuser@quovo.com'}
+    params   = { username: 'quovo_test_user', name: 'Quovo Testuser', email: 'testuser@quovo.com' }
     expected = simple_user(1)
-    fake(:post, "/users", params, { 'user' => expected })
+    fake(:post, '/users', params, 'user' => expected)
 
     actual = Quovo.users.create(params)
     assert_type([actual], Quovo::Models::User)
@@ -37,9 +36,9 @@ class TestApiUsers < TestApi
 
   def test_users_update
     id       = 1
-    params   = {name: 'Quovo Testuser', email: 'testuser@quovo.com'}
+    params   = { name: 'Quovo Testuser', email: 'testuser@quovo.com' }
     expected = simple_user(id)
-    fake(:put, "/users/#{id}", params, { 'user' => expected })
+    fake(:put, "/users/#{id}", params, 'user' => expected)
 
     actual = Quovo.users.update(id, params)
     assert_type([actual], Quovo::Models::User)
@@ -60,6 +59,6 @@ class TestApiUsers < TestApi
   end
 
   def simple_user(i)
-    user(i, "quovo_test_user", "testuser@quovo.com", "Quovo Testuser", nil, 173471.15110)
+    user(i, 'quovo_test_user', 'testuser@quovo.com', 'Quovo Testuser', nil, 173_471)
   end
 end

@@ -4,4 +4,3 @@ class TestQuovo < Minitest::Test
     assert_equal(Quovo.inspect, Quovo.config.inspect)
   end
 end
-

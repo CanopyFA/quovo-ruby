@@ -3,7 +3,7 @@ module Quovo
     class Transaction < Base
       using Quovo::Refinements::ToTime
 
-      fields %i[
+      fields %i(
         account
         currency
         cusip
@@ -22,7 +22,7 @@ module Quovo
         tran_type
         user
         value
-      ]
+      )
 
       undef :date
       def date

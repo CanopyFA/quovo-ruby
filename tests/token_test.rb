@@ -6,25 +6,35 @@ class TestToken < Minitest::Test
       @write = false
     end
 
-    def read?; !!@read; end
-    def write?; !!@write; end
-
-    def read(key)
-      @read = true
-      ["token", Time.now.utc.iso8601].join('|')
+    def read?
+      @read
     end
 
-    def write(key, token)
+    def write?
+      @write
+    end
+
+    def read(_key)
+      @read = true
+      ['token', Time.now.utc.iso8601].join('|')
+    end
+
+    def write(_key, _token)
       @write = true
     end
   end
 
   def setup
-    Quovo.fake!([
-      [:post, "/tokens", 
-       '*',
-       {'access_token' => {'token' => 'TOKEN', 'expires' =>'2016-01-01T12:00:00Z'}}]
-    ])
+    Quovo.fake!(
+      [
+        [
+          :post,
+          '/tokens',
+          '*',
+          { 'access_token' => { 'token' => 'TOKEN', 'expires' => '2016-01-01T12:00:00Z' } }
+        ]
+      ]
+    )
   end
 
   def test_token_uses_storage

@@ -5,7 +5,7 @@ class TestPermit < Minitest::Test
   def test_permit_hash
     actual = { a: 1, b: 2, c: 3 }
     actual.permit!(:a, :c)
-    assert_equal({a: 1, c: 3 }, actual)
+    assert_equal({ a: 1, c: 3 }, actual)
   end
 
   def test_permit_nothing

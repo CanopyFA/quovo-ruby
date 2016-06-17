@@ -5,16 +5,17 @@ module Quovo
     end
 
     def hooks
-      @@hooks ||= []
+      @hooks ||= []
     end
 
     def clear_hooks!
-      @@hooks = []
+      @hooks = []
     end
 
     def run_hooks!(*args)
+      log_params = (args << Quovo.current_scope)
       hooks.each do |hook|
-        hook.call(*(args << Quovo.current_scope))
+        hook.call(*log_params)
       end
       :ok
     end

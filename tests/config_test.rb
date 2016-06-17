@@ -5,12 +5,12 @@ class TestConfig < Minitest::Test
 
     assert_nil(config.username)
     assert_nil(config.password)
-    assert_equal(config.endpoint               , 'https://api.quovo.com/v2')
-    assert_equal(config.token_ttl              , 60 * 60)
-    assert_equal(config.request_timeout        , 60)
-    assert_equal(config.token_prefix           , 'QUOVO-ACCESS-TOKEN')
-    assert_equal(config.debug                  , false)
-    assert_equal(config.strip_sensitive_params , true)
+    assert_equal(config.endpoint, 'https://api.quovo.com/v2')
+    assert_equal(config.token_ttl, 60 * 60)
+    assert_equal(config.request_timeout, 60)
+    assert_equal(config.token_prefix, 'QUOVO-ACCESS-TOKEN')
+    assert_equal(config.debug, false)
+    assert_equal(config.strip_sensitive_params, true)
   end
 
   def test_default_storage
@@ -35,14 +35,14 @@ class TestConfig < Minitest::Test
       config.token_storage          = nil
     end
     config = Quovo.config
-    assert_equal(config.username               , 'username')
-    assert_equal(config.password               , 'password')
-    assert_equal(config.token_ttl              , 1000)
-    assert_equal(config.request_timeout        , 1000)
-    assert_equal(config.token_prefix           , 'PREFIX')
-    assert_equal(config.debug                  , true)
-    assert_equal(config.strip_sensitive_params , false)
-    assert_equal(config.token_storage          , nil)
+    assert_equal(config.username, 'username')
+    assert_equal(config.password, 'password')
+    assert_equal(config.token_ttl, 1000)
+    assert_equal(config.request_timeout, 1000)
+    assert_equal(config.token_prefix, 'PREFIX')
+    assert_equal(config.debug, true)
+    assert_equal(config.strip_sensitive_params, false)
+    assert_equal(config.token_storage, nil)
 
     Quovo.instance_variable_set(:@config, Quovo::Config.new)
   end

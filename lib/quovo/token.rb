@@ -3,12 +3,7 @@ module Quovo
     using Quovo::Refinements::ToTime
     include Quovo::Request
 
-    def initialize(storage:  Quovo.config.token_storage,
-                   ttl:      Quovo.config.token_ttl, 
-                   prefix:   Quovo.config.token_prefix, 
-                   username: Quovo.config.username, 
-                   password: Quovo.config.password
-                  )
+    def initialize(storage: Quovo.config.token_storage, ttl: Quovo.config.token_ttl, prefix: Quovo.config.token_prefix, username: Quovo.config.username, password: Quovo.config.password)
       @storage  = storage
       @ttl      = ttl
       @prefix   = prefix
@@ -24,45 +19,52 @@ module Quovo
         token, expires = generate
         write_cache(token, expires)
       end
-      return token
+      token
     end
 
     def generate
-      expires = (now + ttl).iso8601
-      salt = ('a'..'z').to_a.shuffle[0,10].join
       params = {
-        name: [prefix, expires, salt].join('---'),
-        expires: expires
+        name: [prefix, expires_from_now, salt].join('---'),
+        expires: expires_from_now
       }
-      response = request(:post, '/tokens', params, :json) do |req|
+      payload = request(:post, '/tokens', params, :json) do |req|
         req.basic_auth(username, password)
-      end
-      payload = response.fetch('access_token')
-      return payload.fetch('token'), payload.fetch('expires').to_time.utc
+      end.fetch('access_token')
+      [payload.fetch('token'), payload.fetch('expires').to_time.utc]
     end
 
     attr_reader :storage, :ttl, :prefix, :username, :password
 
     private
 
-    STORAGE_KEY = 'quovo-access-token'
-    SPLITTER = '|'
+    STORAGE_KEY = 'quovo-access-token'.freeze
+    SPLITTER = '|'.freeze
+
+    def salt
+      ('a'..'z').to_a.sample(10).join
+    end
 
     def now
       Time.now.utc
+    end
+
+    def expires_from_now
+      (now + ttl).iso8601
     end
 
     def read_cache
       return @token, @expires if @token && @expires
       token, expires = (storage.read(STORAGE_KEY) || '').split(SPLITTER)
       return nil unless expires
-      @token, @expires = token, expires.to_time.utc
-      return @token, @expires
+      @token = token
+      @expires = expires.to_time.utc
+      [@token, @expires]
     end
 
     def write_cache(token, expires)
       storage.write(STORAGE_KEY, [token, expires.utc.iso8601].join(SPLITTER))
-      @token, @date = token, expires
+      @token = token
+      @date = expires
     end
   end
 end

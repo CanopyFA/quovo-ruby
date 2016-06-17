@@ -5,6 +5,6 @@ class TestCompact < Minitest::Test
   def test_compact_hash
     actual = { a: nil, b: 1, c: 2 }
     actual.compact!
-    assert_equal({b: 1, c: 2 }, actual)
+    assert_equal({ b: 1, c: 2 }, actual)
   end
 end

@@ -3,7 +3,7 @@ module Quovo
     class Challenge < Base
       using Quovo::Refinements::Cast
 
-      fields %i[
+      fields %i(
         account
         type
         is_answered
@@ -13,7 +13,7 @@ module Quovo
         image
         choices
         image_choices
-      ]
+      )
 
       undef :image
       def image

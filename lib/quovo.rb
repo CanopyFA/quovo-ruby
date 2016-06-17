@@ -54,25 +54,25 @@ module Quovo
   extend Quovo::Fake
 
   def self.inspect
-    self.config.inspect
+    config.inspect
   end
 
   def self.enable_logging
     Quovo.hook do |path, method, params, status_code, response, elapsed_time, scope|
       if Quovo.config.debug
         log = [
-          "",
-          "Quovo Action:",
+          '',
+          'Quovo Action:',
           "path: #{path}",
-          "method: #{method}", 
+          "method: #{method}",
           "params: #{params.inspect}",
           "status_code: #{status_code}",
-          "response: #{response.inspect}", 
-          "elapsed_time: #{elapsed_time}s", 
+          "response: #{response.inspect}",
+          "elapsed_time: #{elapsed_time}s",
           "scope: #{scope.inspect}",
-          ""
+          ''
         ]
-        puts log.join("\n    ") 
+        puts log.join("\n    ")
       end
     end
   end

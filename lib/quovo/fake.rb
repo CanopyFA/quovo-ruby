@@ -12,7 +12,7 @@ module Quovo
       @fake_calls = fake_calls
       @fake = true
       Quovo.config.token_storage = Object.new.tap do |o|
-        def o.read(key)
+        def o.read(_)
           ['FAKE-TOKEN', (Time.now.utc + 1_000).iso8601].join('|')
         end
       end
@@ -21,7 +21,6 @@ module Quovo
     def real!
       @fake = false
     end
-
 
     def fake_calls
       @fake_calls
