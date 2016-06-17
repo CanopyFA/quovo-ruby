@@ -1,6 +1,8 @@
 # Quovo
 
-Quovo RESTful API ruby client.
+Quovo RESTful API ruby client. 
+
+Read more about Quovo [here](https://new.quovo.com/api/docs/).
 
 [![Build Status](https://travis-ci.org/CanopyFA/quovo-ruby.svg?branch=master)](https://travis-ci.org/CanopyFA/quovo-ruby)  [![Coverage Status](https://coveralls.io/repos/github/CanopyFA/quovo-ruby/badge.svg?branch=master)](https://coveralls.io/github/CanopyFA/quovo-ruby?branch=master)
 
@@ -164,6 +166,10 @@ Hook is a registered callback that invokes when web request happens.
   client.positions.for_account(account_id)
   client.positions.for_portfolio(portfolio_id)
 ```
+
+## Contributors
+* Canopy Financials [https://www.canopyfa.com](https://www.canopyfa.com)
+* Castle Digital Partners [https://castle.co](https://castle.co)
 
 ## License
 
