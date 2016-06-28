@@ -4,4 +4,5 @@ module Quovo
   HttpError         = Class.new(QuovoError)
   ForbiddenError    = Class.new(HttpError)
   NotFoundError     = Class.new(HttpError)
+  StubNotFoundError = Class.new(StandardError)
 end
