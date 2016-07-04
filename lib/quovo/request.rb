@@ -9,12 +9,12 @@ module Quovo
 
       yield(request) if block_given?
 
-      do_http_request(request, config.request_timeout, format) do |code, payload, elapsed|
+      do_http_request(request, config.request_timeout, format) do |status_code, payload, elapsed|
         Quovo.run_hooks!(
           path,
           method.to_s.upcase,
           strip_sensitive(params, config),
-          code,
+          status_code,
           strip_sensitive(payload, config),
           elapsed
         )
@@ -55,8 +55,8 @@ module Quovo
       http.verify_mode  = OpenSSL::SSL::VERIFY_NONE
 
       http.start do |transport|
-        (code, payload), elapsed = with_timing { parse_response(transport.request(request), format) }
-        yield(code, payload, elapsed)
+        (status_code, payload), elapsed = with_timing { parse_response(transport.request(request), format) }
+        yield(status_code, payload, elapsed)
       end
     end
 
@@ -70,13 +70,13 @@ module Quovo
     end
 
     def parse_response(response, format)
-      code = response.code
-      body = response.body
+      status_code = response.code
+      body        = response.body
+      raise Quovo::NotFoundError,  body if status_code =~ /404/
+      raise Quovo::ForbiddenError, body if status_code =~ /403/
+      raise Quovo::HttpError,      body if status_code =~ /^[45]/
       payload = format == :json ? JSON.parse(body) : body
-      raise Quovo::NotFoundError,  body if code =~ /404/
-      raise Quovo::ForbiddenError, body if code =~ /403/
-      raise Quovo::HttpError,      body if code =~ /^[45]/
-      [code, payload]
+      [status_code, payload]
     end
 
     def with_timing
