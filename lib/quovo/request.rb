@@ -5,7 +5,8 @@ module Quovo
     def request(method, path, params = {}, format = :plain, config = Quovo.config)
       return fake_request(method, path, params, &Proc.new) if Quovo.fake?
 
-      request = build_http_request(config.endpoint, method, path, params)
+      uri = build_uri(config.endpoint, method, path, params)
+      request = build_http_request(uri, method, params)
 
       yield(request) if block_given?
 
@@ -24,21 +25,15 @@ module Quovo
 
     protected
 
-    def build_http_request(endpoint, method, path, params)
-      request = case method
-                when :get
-                  Net::HTTP::Get
-                when :post
-                  Net::HTTP::Post
-                when :put
-                  Net::HTTP::Put
-                when :delete
-                  Net::HTTP::Delete
-                else
-                  raise Quovo::HttpError, 'unsupported method'
-                end.new(URI(endpoint + path))
+    def build_uri(endpoint, method, path, params)
+      get_params = '?' + URI.encode_www_form(params) if method == :get && params.any?
+      URI(endpoint + path + (get_params || ''))
+    end
 
-      inject_http_params(request, method, params) if params.any?
+    def build_http_request(uri, method, params)
+      raise Quovo::HttpError, 'unsupported method' unless [:get, :post, :put, :delete].include?(method)
+      request = Kernel.const_get("Net::HTTP::#{method.to_s.capitalize}").new(uri)
+      inject_http_params(request, params) if method != :get && params.any?
       request
     end
 
@@ -55,21 +50,17 @@ module Quovo
       http.verify_mode  = OpenSSL::SSL::VERIFY_NONE
 
       http.start do |transport|
-        (status_code, payload), elapsed = with_timing { parse_response(transport.request(request), format) }
+        (status_code, payload), elapsed = with_timing { parse_http_response(transport.request(request), format) }
         yield(status_code, payload, elapsed)
       end
     end
 
-    def inject_http_params(request, method, params)
-      if method == :get
-        request.uri.query = URI.encode_www_form(params)
-      else
-        request.body = params.to_json
-        request['Content-Type'] = 'application/json'
-      end
+    def inject_http_params(request, params)
+      request.body = params.to_json
+      request['Content-Type'] = 'application/json'
     end
 
-    def parse_response(response, format)
+    def parse_http_response(response, format)
       status_code = response.code
       body        = response.body
       raise Quovo::NotFoundError,  body if status_code =~ /404/
