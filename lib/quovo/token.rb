@@ -64,7 +64,7 @@ module Quovo
     def write_cache(token, expires)
       storage.write(STORAGE_KEY, [token, expires.utc.iso8601].join(SPLITTER))
       @token = token
-      @date = expires
+      @expires = expires
     end
   end
 end
