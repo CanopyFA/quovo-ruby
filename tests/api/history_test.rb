@@ -4,7 +4,7 @@ class TestApiHistory < TestApi
     id = 1
     expected = [
       simple_transaction(1),
-      simple_transaction(1),
+      simple_transaction(2),
       simple_transaction(3)
     ]
     params = { start_date: '2015-01-05', end_date: '2015-05-05' }
@@ -19,7 +19,7 @@ class TestApiHistory < TestApi
     id = 1
     expected = [
       simple_transaction(1),
-      simple_transaction(1),
+      simple_transaction(2),
       simple_transaction(3)
     ]
     params = { start_date: '2015-01-05', end_date: '2015-05-05' }
@@ -34,10 +34,25 @@ class TestApiHistory < TestApi
     id = 1
     expected = [
       simple_transaction(1),
-      simple_transaction(1),
+      simple_transaction(2),
       simple_transaction(3)
     ]
     params = { start_date: '2015-01-05', end_date: '2015-05-05' }
+    fake(:get, "/portfolios/#{id}/history", params, 'history' => expected)
+    actual = Quovo.history.for_portfolio(id, params)
+    assert_equal(actual.length, 3)
+    assert_type(actual, Quovo::Models::Transaction)
+    assert_content(expected, actual)
+  end
+
+  def test_history_count
+    id = 1
+    expected = [
+      simple_transaction(1),
+      simple_transaction(2),
+      simple_transaction(3)
+    ]
+    params = { count: 10 }
     fake(:get, "/portfolios/#{id}/history", params, 'history' => expected)
     actual = Quovo.history.for_portfolio(id, params)
     assert_equal(actual.length, 3)

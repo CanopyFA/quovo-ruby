@@ -7,7 +7,7 @@ module Quovo
 
       def for_user(id, params = {})
         id.require!(as: :id)
-        params.permit!(:start_date, :end_date, :start_id, :end_id)
+        params.permit!(:start_date, :end_date, :start_id, :end_id, :count)
         api(:get, "/users/#{id}/history", params)
           .fetch('history')
           .cast(Transaction)
@@ -16,7 +16,7 @@ module Quovo
 
       def for_account(id, params = {})
         id.require!(as: :id)
-        params.permit!(:start_date, :end_date, :start_id, :end_id)
+        params.permit!(:start_date, :end_date, :start_id, :end_id, :count)
         api(:get, "/accounts/#{id}/history", params)
           .fetch('history')
           .cast(Transaction)
@@ -25,7 +25,7 @@ module Quovo
 
       def for_portfolio(id, params = {})
         id.require!(as: :id)
-        params.permit!(:start_date, :end_date, :start_id, :end_id)
+        params.permit!(:start_date, :end_date, :start_id, :end_id, :count)
         api(:get, "/portfolios/#{id}/history", params)
           .fetch('history')
           .cast(Transaction)
