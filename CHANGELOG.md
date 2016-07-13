@@ -1,3 +1,7 @@
+### v1.0.4
+[FEATURE] Allow count param for history api.
+[FIX] Fix caching expiration date for token
+
 ### v1.0.3
 [FIX] Pass params to url for api GET requests.
 
