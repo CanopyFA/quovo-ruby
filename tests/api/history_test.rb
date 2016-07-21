@@ -1,5 +1,19 @@
 require 'init'
 class TestApiHistory < TestApi
+  def test_history_for_all
+    expected = [
+      simple_transaction(1),
+      simple_transaction(2),
+      simple_transaction(3)
+    ]
+    params = { start_date: '2015-01-05', end_date: '2015-05-05' }
+    fake(:get, '/history', params, 'history' => expected)
+    actual = Quovo.history.all(params)
+    assert_equal(actual.length, 3)
+    assert_type(actual, Quovo::Models::Transaction)
+    assert_content(expected, actual)
+  end
+
   def test_history_for_user
     id = 1
     expected = [
