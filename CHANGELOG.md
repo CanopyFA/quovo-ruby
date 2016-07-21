@@ -1,3 +1,6 @@
+### v1.0.5
+[FEATURE] Add history/all api.
+
 ### v1.0.4
 [FEATURE] Allow count param for history api.
 [FIX] Fix caching expiration date for token
