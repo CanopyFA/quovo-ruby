@@ -93,18 +93,15 @@ Hook is a registered callback that invokes when web request happens.
 ```ruby
   client.users.all
   client.users.find(user_id)
-  # Creates new user
-  # additional parameters
-  # name:   - client's name
-  # email:  - client's email. Cannot match another user's email
-  # phone:  - client's phone number  
-  client.users.create(username)
+  # Creates new user  
+  client.users.create(username, options)
   # Updates user information
-  # additional parameters
+  client.users.update(user_id, options)
+  # Options
   # name:   - client's name
   # email:  - client's email. Cannot match another user's email
-  # phone:  - client's phone number  
-  client.users.update(user_id)
+  # phone:  - client's phone number
+  # Destroy user
   client.users.delete(user_id) 
 ```
 
@@ -133,17 +130,17 @@ Hook is a registered callback that invokes when web request happens.
 
 ### History
 ```ruby
-  client.history.all
-  # additional parameters
+  client.history.all(options)
+  client.history.for_user(user_id, options)
+  client.history.for_account(account_id, options)
+  client.history.for_portfolio(portfolio_id, options)
+  # Options
   # start: - pointer to next set of items
   # count: - max number of results to return
   # start_date: - filters out history before this date
   # end_date:   - filters out history after this date
   # start_id:   - filters out history before this id
-  # end_id:     - filters out history after this id  
-  client.history.for_user(user_id)
-  client.history.for_account(account_id)
-  client.history.for_portfolio(portfolio_id)
+  # end_id:     - filters out history after this id
 ```
 
 ### Portfolios
@@ -157,11 +154,6 @@ Hook is a registered callback that invokes when web request happens.
 
 ### Positions
 ```ruby
-  # Load all positions
-  # additional parameters
-  # start:   - pointer to next set of items
-  # count:   - max number of results to return  
-  client.positions.all
   client.positions.for_user(user_id)
   client.positions.for_account(account_id)
   client.positions.for_portfolio(portfolio_id)

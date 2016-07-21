@@ -5,6 +5,14 @@ module Quovo
       using Quovo::Refinements::Require
       using Quovo::Refinements::Permit
 
+      def all(params = {})
+        params.permit!(:start_date, :end_date, :start_id, :end_id, :count)
+        api(:get, '/history', params)
+          .fetch('history')
+          .cast(Transaction)
+          .sort_by(&:sort_key)
+      end
+
       def for_user(id, params = {})
         id.require!(as: :id)
         params.permit!(:start_date, :end_date, :start_id, :end_id, :count)
