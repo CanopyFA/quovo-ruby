@@ -31,6 +31,14 @@ module Quovo
           .cast(Transaction)
           .sort_by(&:sort_key)
       end
+
+      def update_transaction(id, params = {})
+        id.require!(as: :id)
+        params.permit!(:expense_category)
+        api(:put, "/history/#{id}", params)
+          .fetch('history')
+          .cast(Transaction)
+      end
     end
   end
 end

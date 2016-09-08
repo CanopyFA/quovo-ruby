@@ -60,6 +60,16 @@ class TestApiHistory < TestApi
     assert_content(expected, actual)
   end
 
+  def test_history_update_transaction
+    id = 1
+    expected = simple_transaction(1)
+    params = { expense_category: 'Groceries' }
+    fake(:put, "/history/#{id}", params, 'history' => expected)
+    actual = Quovo.history.update_transaction(id, params)
+    assert_type([actual], Quovo::Models::Transaction)
+    assert_content([expected], [actual])
+  end
+
   # helpers
   def transaction(*args)
     instance(Quovo::Models::Transaction, *args)
