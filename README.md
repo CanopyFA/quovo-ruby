@@ -130,7 +130,6 @@ Hook is a registered callback that invokes when web request happens.
 
 ### History
 ```ruby
-  client.history.all(options)
   client.history.for_user(user_id, options)
   client.history.for_account(account_id, options)
   client.history.for_portfolio(portfolio_id, options)
@@ -140,7 +139,13 @@ Hook is a registered callback that invokes when web request happens.
   # start_date: - filters out history before this date
   # end_date:   - filters out history after this date
   # start_id:   - filters out history before this id
-  # end_id:     - filters out history after this id
+  # end_id:     - filters out history after this id  
+```
+#### Update transaction (read more [here](https://new.quovo.com/api/docs/index.html#update-a-transaction))
+```
+   client.history.update_transaction(id, options)
+   # Options:
+   # expense_category: new expense_category
 ```
 
 ### Portfolios
