@@ -14,6 +14,8 @@ module Quovo
           Roth\ IRA Roth\ 401k Simple\ IRA SEP\ IRA
           Thrift\ Savings\ Plan
           Profit\ Sharing\ Plan
+          Stock\ Plan
+          Minor\ Custodial\ Account
         ),
         'Banking'    => %w(Checking Credit\ Card Savings),
         'Insurance'  => %w(Annuity Fixed\ Annuity Insurance Variable\ Annuity),
