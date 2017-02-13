@@ -35,6 +35,7 @@ require 'quovo/models/portfolio'
 require 'quovo/models/user'
 require 'quovo/models/position'
 require 'quovo/models/transaction'
+require 'quovo/models/iframe_token'
 
 require 'quovo/api/base'
 require 'quovo/api/brokerages'
@@ -44,6 +45,7 @@ require 'quovo/api/portfolios'
 require 'quovo/api/users'
 require 'quovo/api/positions'
 require 'quovo/api/history'
+require 'quovo/api/iframe_token'
 require 'quovo/api'
 
 module Quovo

@@ -27,5 +27,9 @@ module Quovo
     def history
       @history ||= Quovo::Api::History.new
     end
+
+    def iframe_token
+      @iframe_token ||= Quovo::Api::IframeToken.new
+    end
   end
 end
