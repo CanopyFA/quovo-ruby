@@ -31,5 +31,9 @@ module Quovo
     def iframe_token
       @iframe_token ||= Quovo::Api::IframeToken.new
     end
+
+    def webhooks
+      @webhooks ||= Quovo::Api::Webhooks.new
+    end
   end
 end
