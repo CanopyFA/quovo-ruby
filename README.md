@@ -164,6 +164,11 @@ Hook is a registered callback that invokes when web request happens.
   client.positions.for_portfolio(portfolio_id)
 ```
 
+### Iframe_token
+```ruby
+  client.iframe_token.create(user_id)
+```
+
 ## Contributors
 * Canopy Financials [https://www.canopyfa.com](https://www.canopyfa.com)
 * Castle Digital Partners [https://castle.co](https://castle.co)

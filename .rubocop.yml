@@ -1,4 +1,10 @@
+Bundler/OrderedGems:
+  Enabled: false
 Style/Documentation:
+  Enabled: false
+Style/SpaceInLambdaLiteral:
+  Enabled: false
+Metrics/BlockLength:
   Enabled: false
 Metrics/MethodLength:
   Enabled: false
