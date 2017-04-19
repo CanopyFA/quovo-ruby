@@ -31,7 +31,7 @@ module Quovo
     end
 
     def build_http_request(uri, method, params)
-      raise Quovo::HttpError, 'unsupported method' unless [:get, :post, :put, :delete].include?(method)
+      raise Quovo::HttpError, 'unsupported method' unless %i(get post put delete).include?(method)
       request = Kernel.const_get("Net::HTTP::#{method.to_s.capitalize}").new(uri)
       inject_http_params(request, params) if method != :get && params.any?
       request

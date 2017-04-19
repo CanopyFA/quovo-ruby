@@ -4,6 +4,8 @@ Style/Documentation:
   Enabled: false
 Style/SpaceInLambdaLiteral:
   Enabled: false
+Style/PercentLiteralDelimiters:
+  Enabled: false
 Metrics/BlockLength:
   Enabled: false
 Metrics/MethodLength:

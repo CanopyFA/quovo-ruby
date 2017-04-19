@@ -3,7 +3,7 @@ class TestCast < Minitest::Test
   using Quovo::Refinements::Cast
 
   class Foo < Quovo::Models::Base
-    fields [:a, :b]
+    fields %i(a b)
   end
 
   def test_cast_nil

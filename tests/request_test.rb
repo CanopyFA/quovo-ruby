@@ -26,7 +26,7 @@ class TestRequest < Minitest::Test
 
   def test_request_plain
     http_transport.code = '200'
-    [:get, :post, :put, :delete].each do |method|
+    %i(get post put delete).each do |method|
       body = method.to_s
       http_transport.body = body
       result = request(method, '/accounts', {})
@@ -36,7 +36,7 @@ class TestRequest < Minitest::Test
 
   def test_request_json
     http_transport.code = '200'
-    [:get, :post, :put, :delete].each do |method|
+    %i(get post put delete).each do |method|
       body = { 'method' => method.to_s }
       http_transport.body = body.to_json
       result = request(method, '/accounts', {}, :json)
