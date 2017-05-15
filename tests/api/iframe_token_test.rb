@@ -7,5 +7,6 @@ class TestApiIframeToken < TestApi
     token = Quovo.iframe_token.create(1)
     assert_type([token], Quovo::Models::IframeToken)
     assert_content([expected], [token])
+    assert_equal(token.url, 'https://embed.quovo.com/auth/token_value')
   end
 end
