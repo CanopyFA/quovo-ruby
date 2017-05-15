@@ -12,6 +12,8 @@ module Quovo
         fees
         fxrate
         id
+        is_cancel
+        is_pending
         memo
         portfolio
         price
