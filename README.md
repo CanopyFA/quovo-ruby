@@ -169,6 +169,27 @@ Hook is a registered callback that invokes when web request happens.
   client.iframe_token.create(user_id)
 ```
 
+### Webhooks
+```ruby
+  client.webhooks.all
+  client.webhooks.create(options)
+  # Options:
+  # events: - a list of events to subscribe to. Default is ['*']
+  # is_active: - whether the webhook is enabled or not. Default is 'true'
+  # secret: - the string used to calculate the signature on each webhook delivery (required)
+  # name: - a unique name (required)
+  # url:  - the URL the webhook should POST data to. (required)
+  client.webhooks.update(name, options)
+  # Options:
+  # events: - a list of events to subscribe to. Default is ['*']
+  # is_active: - whether the webhook is enabled or not
+  # secret: - the string used to calculate the signature on each webhook delivery
+  # name: - a unique name (required)
+  # url:  - the URL the webhook should POST data to.
+  client.webhooks.delete(name)
+```
+
+
 ## Contributors
 * Canopy Financials [https://www.canopyfa.com](https://www.canopyfa.com)
 * Castle Digital Partners [https://castle.co](https://castle.co)
