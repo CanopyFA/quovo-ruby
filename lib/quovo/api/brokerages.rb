@@ -10,6 +10,12 @@ module Quovo
           .cast(Brokerage)
       end
 
+      def all_auth
+        api(:get, '/brokerages?can_auth=true')
+          .fetch('brokerages')
+          .cast(Brokerage)
+      end
+
       def find(id)
         id.require!(as: :id)
         api(:get, "/brokerages/#{id}")
