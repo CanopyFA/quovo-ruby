@@ -41,6 +41,7 @@ module Quovo
         user
         username
         value
+        portfolio_type_confidence
       )
 
       undef :last_change
