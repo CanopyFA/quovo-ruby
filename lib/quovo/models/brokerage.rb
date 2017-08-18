@@ -9,6 +9,7 @@ module Quovo
         password
         username
         website
+        popularity_score
       )
     end
   end

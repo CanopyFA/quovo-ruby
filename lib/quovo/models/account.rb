@@ -18,6 +18,7 @@ module Quovo
         update_count
         opened
         updated
+        last_good_sync
       )
 
       undef :opened
@@ -28,6 +29,11 @@ module Quovo
       undef :updated
       def updated
         @updated.to_time
+      end
+
+      undef :last_good_sync
+      def last_good_sync
+        @last_good_sync.to_time
       end
     end
   end

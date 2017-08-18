@@ -7,19 +7,28 @@ module Quovo
           401a 401k 403b 457b 529
           Brokerage\ Account
           Education\ Savings\ Account
+          Health\ Reimbursement\ Arrangement
           Health\ Savings\ Account
           IRA
+          Minor\ Custodial\ Account
           Non-Taxable\ Brokerage\ Account
           Pension
-          Roth\ IRA Roth\ 401k Simple\ IRA SEP\ IRA
-          Thrift\ Savings\ Plan
           Profit\ Sharing\ Plan
+          Roth\ 401k Roth\ IRA SEP\ IRA Simple\ IRA
           Stock\ Plan
-          Minor\ Custodial\ Account
+          Thrift\ Savings\ Plan
+          Variable\ Annuity
         ),
         'Banking'    => %w(Checking Credit\ Card Savings),
-        'Insurance'  => %w(Annuity Fixed\ Annuity Insurance Variable\ Annuity),
-        'Loan'       => %w(Loan Mortgage Student\ Loan),
+        'Insurance'  => %w(
+          Annuity Fixed\ Annuity Insurance
+          Term\ Life\ Insurance
+          Universal\ Life\ Insurance
+          Variable\ Life\ Insurance
+          Whole\ Life\ Insurance
+        ),
+        'Loan'       => %w(Auto\ Loan Loan Mortgage Student\ Loan),
+        'Other'      => %w(Alternative Limited\ Partnership Misc Real\ Estate),
         'Unknown'    => %w(Unknown)
       }.freeze
 
@@ -41,6 +50,7 @@ module Quovo
         user
         username
         value
+        portfolio_type_confidence
       )
 
       undef :last_change
