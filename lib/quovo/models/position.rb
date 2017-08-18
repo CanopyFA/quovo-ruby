@@ -20,6 +20,7 @@ module Quovo
         quantity
         sector
         security_type
+        security_type_confidence
         ticker
         ticker_name
         user
