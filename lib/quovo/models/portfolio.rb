@@ -45,6 +45,7 @@ module Quovo
         owner_type
         portfolio_name
         portfolio_type
+        portfolio_subtype
         portfolio_category
         update_count
         user

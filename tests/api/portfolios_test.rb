@@ -69,6 +69,6 @@ class TestApiPortfolios < TestApi
   end
 
   def simple_portfolio(i)
-    portfolio(i, 1, 1, 'Test Data Brokerage', 'A Sample Portfolio', false, true, '2016-01-01T12:00:00.000', 'My Portfolio II', 'Individual Account', 'Investment Account', 'Brokerage Account', 'Investment', 3, 1, 'quovo_test_user', 73_479)
+    portfolio(i, 1, 1, 'Test Data Brokerage', 'A Sample Portfolio', false, true, '2016-01-01T12:00:00.000', 'My Portfolio II', 'Individual Account', 'Investment Account', 'Brokerage Account', 'Brokerage Account', 'Investment', 3, 1, 'quovo_test_user', 73_479, 'Very High')
   end
 end
