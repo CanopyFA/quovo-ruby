@@ -10,16 +10,16 @@ module Quovo
           Health\ Reimbursement\ Arrangement
           Health\ Savings\ Account
           IRA
-          Minor\ Custodial\ Account
           Non-Taxable\ Brokerage\ Account
           Pension
           Profit\ Sharing\ Plan
           Roth\ 401k Roth\ IRA SEP\ IRA Simple\ IRA
           Stock\ Plan
           Thrift\ Savings\ Plan
+          UGMA UTMA
           Variable\ Annuity
         ),
-        'Banking'    => %w(Checking Credit\ Card Savings),
+        'Banking'    => %w(Certificate\ of\ Deposit Checking Credit\ Card Savings),
         'Insurance'  => %w(
           Annuity Fixed\ Annuity Insurance
           Term\ Life\ Insurance
