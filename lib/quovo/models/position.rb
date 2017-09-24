@@ -17,6 +17,8 @@ module Quovo
         portfolio
         portfolio_name
         price
+        proxy_ticker
+        proxy_confidence
         quantity
         sector
         security_type
