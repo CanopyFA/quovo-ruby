@@ -126,6 +126,10 @@ Hook is a registered callback that invokes when web request happens.
   client.challenges.answers!(account_id, [{question: 'question text', answer: 'answer text'}])
   # for choice questions
   client.challenges.answers!(account_id, [{question: 'question text', answer: 0}])
+  # find single challenge
+  client.challenges.find(challenge_id)
+  # answer single challenge
+  client.challenges.answer!(challenge_id, {question: 'question text', answer: 'answer text'})
 ```
 
 ### History
