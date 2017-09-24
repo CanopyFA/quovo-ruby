@@ -10,6 +10,7 @@ module Quovo
         username
         website
         popularity_score
+        status
       )
     end
   end

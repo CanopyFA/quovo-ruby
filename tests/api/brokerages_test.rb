@@ -30,6 +30,6 @@ class TestApiBrokerages < TestApi
   end
 
   def simple_brokerage(i)
-    brokerage(i, false, "Brokerage #{i}", nil, nil, nil, 'www.example.com')
+    brokerage(i, false, "Brokerage #{i}", nil, nil, nil, 'www.example.com', 'unavailable')
   end
 end
