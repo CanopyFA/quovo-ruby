@@ -51,6 +51,6 @@ class TestApiPositions < TestApi
   end
 
   def simple_position(i)
-    position(1, 'Large Cap Equity', nil, nil, nil, '037833100', 1.0, i, '2015-05-05', 'NSD', 746_745, 'test port', 105.19, 12.0, 'Technology', 'Equity', 'AAPL', 'Apple Inc', 1, 'quovo_test_user', 1_262.28)
+    position(1, 'Large Cap Equity', nil, nil, nil, '037833100', 1.0, i, '2015-05-05', 'NSD', 746_745, 'test port', 105.19, 'AAPL', 'Very High', 12.0, 'Technology', 'Equity', 'AAPL', 'Apple Inc', 1, 'quovo_test_user', 1_262.28)
   end
 end
