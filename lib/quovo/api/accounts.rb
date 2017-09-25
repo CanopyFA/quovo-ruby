@@ -47,9 +47,10 @@ module Quovo
           .cast(Account)
       end
 
-      def sync!(id)
+      def sync!(id, options={})
         id.require!(as: :id)
-        api(:post, "/accounts/#{id}/sync")
+        options.select! { |k,v| v == true }
+        api(:post, "/accounts/#{id}/sync", options)
           .fetch('sync')
           .cast(Sync)
       end
@@ -60,6 +61,14 @@ module Quovo
           .fetch('sync')
           .cast(Sync)
       end
+
+      def auth(id)
+        id.require!(as: :id)
+        api(:get, "/accounts/#{id}/auth")
+          .fetch('auth')
+          .cast(Auth)
+      end
+
     end
   end
 end

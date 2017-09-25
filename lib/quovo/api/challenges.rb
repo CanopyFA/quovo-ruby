@@ -23,6 +23,17 @@ module Quovo
           .fetch('challenges')
           .cast(Challenge)
       end
+
+      def answer_for(challenge_id, answer)
+        challenge_id.require!(as: 'challenge_id')
+        answer.require!(as: 'answer')
+
+        params = { answer: answer.to_json }
+        api(:put, "/challenges/#{challenge_id}", params)
+          .fetch('challenge')
+          .cast(Challenge)
+      end
+
     end
   end
 end
