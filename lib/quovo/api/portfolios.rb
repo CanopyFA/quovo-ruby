@@ -1,46 +1,43 @@
 module Quovo
   module Api
     class Portfolios < Base
-      using Quovo::Refinements::Cast
-      using Quovo::Refinements::Compact
-      using Quovo::Refinements::Permit
-      using Quovo::Refinements::Require
+      using Quovo::Utils::Cast
+      using Quovo::Utils::Compact
+      using Quovo::Utils::Permit
+      using Quovo::Utils::Require
 
       def all
-        api(:get, '/portfolios')
-          .fetch('portfolios')
-          .cast(Portfolio)
+        cast(api(:get, '/portfolios').fetch('portfolios'), Portfolio)
       end
 
       def find(id)
-        id.require!(as: :id)
-        api(:get, "/portfolios/#{id}")
-          .fetch('portfolio')
-          .cast(Portfolio)
+        require!(id, as: :id)
+        cast(api(:get, "/portfolios/#{id}").fetch('portfolio'), Portfolio)
       end
 
       def update(id, params)
-        id.require!(as: :id)
-        params
-          .permit!(:nickname, :portfolio_type, :is_inactive)
-          .compact!
-        api(:put, "/portfolios/#{id}", params)
-          .fetch('portfolio')
-          .cast(Portfolio)
+        require!(id, as: :id)
+        permit!(params, :nickname, :portfolio_type, :is_inactive).compact!
+        cast(
+          api(:put, "/portfolios/#{id}", params).fetch('portfolio'),
+          Portfolio
+        )
       end
 
       def for_user(id)
-        id.require!(as: :id)
-        api(:get, "/users/#{id}/portfolios")
-          .fetch('portfolios')
-          .cast(Portfolio)
+        require!(id, as: :id)
+        cast(
+          api(:get, "/users/#{id}/portfolios").fetch('portfolios'),
+          Portfolio
+        )
       end
 
       def for_account(id)
-        id.require!(as: :id)
-        api(:get, "/accounts/#{id}/portfolios")
-          .fetch('portfolios')
-          .cast(Portfolio)
+        require!(id, as: :id)
+        cast(
+          api(:get, "/accounts/#{id}/portfolios").fetch('portfolios'),
+          Portfolio
+        )
       end
     end
   end

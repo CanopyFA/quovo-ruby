@@ -1,27 +1,23 @@
 module Quovo
   module Api
     class Challenges < Base
-      using Quovo::Refinements::Cast
-      using Quovo::Refinements::Require
+      include Quovo::Utils::Cast
+      include Quovo::Utils::Require
 
       def for_account(id)
-        id.require!(as: :id)
-        api(:get, "/accounts/#{id}/challenges")
-          .fetch('challenges')
-          .cast(Challenge)
+        require!(id, as: :id)
+        cast(api(:get, "/accounts/#{id}/challenges").fetch('challenges'), Challenge)
       end
 
       def answers!(account_id, answers)
-        account_id.require!(as: 'account_id')
-        answers.require!(as: 'answers')
+        require!(account_id, as: 'account_id')
+        require!(answers, as: 'answers')
         answers.each do |answer|
-          answer.require!(:answer, :question)
+          require!(answer, :answer, :question)
         end
 
         params = { questions: answers.to_json }
-        api(:put, "/accounts/#{account_id}/challenges", params)
-          .fetch('challenges')
-          .cast(Challenge)
+        cast(api(:put, "/accounts/#{account_id}/challenges", params).fetch('challenges'), Challenge)
       end
     end
   end
