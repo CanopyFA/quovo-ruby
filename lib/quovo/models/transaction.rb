@@ -1,7 +1,7 @@
 module Quovo
   module Models
     class Transaction < Base
-      using Quovo::Refinements::ToTime
+      include Quovo::Utils::ToTime
 
       fields %i(
         account
@@ -28,7 +28,7 @@ module Quovo
 
       undef :date
       def date
-        @date.to_time
+        to_time(@date)
       end
 
       def sort_key

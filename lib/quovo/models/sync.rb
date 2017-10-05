@@ -1,7 +1,7 @@
 module Quovo
   module Models
     class Sync < Base
-      using Quovo::Refinements::Cast
+      include Quovo::Utils::Cast
 
       fields %i(
         account
@@ -13,7 +13,7 @@ module Quovo
 
       undef :progress
       def progress
-        @progress.cast(Progress)
+        cast(@progress, Progress)
       end
     end
   end

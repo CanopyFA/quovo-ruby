@@ -1,7 +1,7 @@
 module Quovo
   module Models
     class Account < Base
-      using Quovo::Refinements::ToTime
+      include Quovo::Utils::ToTime
 
       fields %i(
         id
@@ -23,17 +23,17 @@ module Quovo
 
       undef :opened
       def opened
-        @opened.to_time
+        to_time(@opened)
       end
 
       undef :updated
       def updated
-        @updated.to_time
+        to_time(@updated)
       end
 
       undef :last_good_sync
       def last_good_sync
-        @last_good_sync.to_time
+        to_time(@last_good_sync)
       end
     end
   end

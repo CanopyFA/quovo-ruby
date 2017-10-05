@@ -1,6 +1,5 @@
 module Quovo
   class Token
-    using Quovo::Refinements::ToTime
     include Quovo::Request
 
     def initialize(storage: Quovo.config.token_storage, ttl: Quovo.config.token_ttl, prefix: Quovo.config.token_prefix, username: Quovo.config.username, password: Quovo.config.password)

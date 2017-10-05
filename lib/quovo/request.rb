@@ -1,7 +1,5 @@
 module Quovo
   module Request
-    using Quovo::Refinements::Sensitive
-
     def request(method, path, params = {}, format = :plain, config = Quovo.config)
       return fake_request(method, path, params, &Proc.new) if Quovo.fake?
 

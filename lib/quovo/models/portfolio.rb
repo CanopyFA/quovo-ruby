@@ -1,7 +1,7 @@
 module Quovo
   module Models
     class Portfolio < Base
-      using Quovo::Refinements::ToTime
+      include Quovo::Utils::ToTime
       CATEGORIES = {
         'Investment' => %w(
           401a 401k 403b 457b 529
@@ -56,7 +56,7 @@ module Quovo
 
       undef :last_change
       def last_change
-        @last_change.to_time
+        to_time(@last_change)
       end
     end
   end

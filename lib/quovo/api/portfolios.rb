@@ -1,10 +1,10 @@
 module Quovo
   module Api
     class Portfolios < Base
-      using Quovo::Utils::Cast
-      using Quovo::Utils::Compact
-      using Quovo::Utils::Permit
-      using Quovo::Utils::Require
+      include Quovo::Utils::Cast
+      include Quovo::Utils::Compact
+      include Quovo::Utils::Permit
+      include Quovo::Utils::Require
 
       def all
         cast(api(:get, '/portfolios').fetch('portfolios'), Portfolio)
