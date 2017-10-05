@@ -1,7 +1,7 @@
 module Quovo
   module Api
     class Accounts < Base
-      using Quovo::Refinements::Cast
+      include Quovo::Utils::Cast
       using Quovo::Refinements::Require
       using Quovo::Refinements::Permit
 

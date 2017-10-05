@@ -6,12 +6,12 @@ require 'forwardable'
 require 'net/http'
 require 'openssl'
 
-require 'quovo/refinements/require'
-require 'quovo/refinements/to_time'
-require 'quovo/refinements/cast'
-require 'quovo/refinements/compact'
-require 'quovo/refinements/permit'
-require 'quovo/refinements/sensitive'
+require 'quovo/utils/require'
+require 'quovo/utils/to_time'
+require 'quovo/utils/cast'
+require 'quovo/utils/compact'
+require 'quovo/utils/permit'
+require 'quovo/utils/sensitive'
 
 require 'quovo/errors'
 

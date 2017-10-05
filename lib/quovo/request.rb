@@ -78,7 +78,7 @@ module Quovo
     end
 
     def strip_sensitive(data, config)
-      config.strip_sensitive_params ? data.strip_sensitive : data
+      config.strip_sensitive_params ? Quovo::Utils::Sensitive.strip_sensitive(data) : data
     end
 
     class FakeRequest

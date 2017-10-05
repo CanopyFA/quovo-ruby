@@ -30,7 +30,7 @@ module Quovo
       payload = request(:post, '/tokens', params, :json) do |req|
         req.basic_auth(username, password)
       end.fetch('access_token')
-      [payload.fetch('token'), payload.fetch('expires').to_time.utc]
+      [payload.fetch('token'), Quovo::Utils::ToTime.to_time(payload.fetch('expires')).utc]
     end
 
     attr_reader :storage, :ttl, :prefix, :username, :password
@@ -57,7 +57,7 @@ module Quovo
       token, expires = (storage.read(STORAGE_KEY) || '').split(SPLITTER)
       return nil unless expires
       @token = token
-      @expires = expires.to_time.utc
+      @expires = Quovo::Utils::ToTime.to_time(expires).utc
       [@token, @expires]
     end
 
