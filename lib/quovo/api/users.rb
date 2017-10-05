@@ -21,7 +21,7 @@ module Quovo
       end
 
       def create(params)
-        require!(permit!(params, :username, :name, :email, :phone), :username))
+        require!(permit!(params, :username, :name, :email, :phone), :username)
         cast(
           api(:post, '/users', params).fetch('user'),
           User
