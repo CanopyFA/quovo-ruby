@@ -10,7 +10,7 @@ module Quovo
         when Hash
           model.new(object)
         when Array
-          map {|entry| cast(entry, model)}
+          object.map {|entry| cast(entry, model)}
         when NilClass
           nil
         else
