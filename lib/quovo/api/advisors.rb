@@ -32,7 +32,7 @@ module Quovo
         require!(id, as: :id)
         permit!(params, :name, :email, :username)
         cast(
-          api(:put, "/advisors/#{id}", params).fetch('advisors'),
+          api(:put, "/advisors/#{id}", params).fetch('advisor'),
           Advisor
         )
       end
