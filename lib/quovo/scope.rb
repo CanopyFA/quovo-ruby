@@ -8,11 +8,15 @@ module Quovo
       result
     end
 
+    def scope_hash
+      defined?(RequestStore) ? RequestStore.store : Thread.current
+    end
+
     def current_scope(*args)
       if args.any?
-        Thread.current[:__quovo_scope__] = args.first
+        scope_hash[:__quovo_scope__] = args.first
       else
-        Thread.current[:__quovo_scope__] ||= {}
+        scope_hash[:__quovo_scope__] ||= {}
       end
     end
   end
