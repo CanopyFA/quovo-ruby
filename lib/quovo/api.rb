@@ -7,6 +7,10 @@ module Quovo
     def accounts
       @accounts ||= Quovo::Api::Accounts.new
     end
+    
+    def advisors
+      @advisors ||= Quovo::Api::Advisors.new
+    end
 
     def challenges
       @challenges ||= Quovo::Api::Challenges.new
