@@ -18,7 +18,7 @@ module Quovo
 
         request(method, path, params, format) do |req|
           req['Authorization'] = "Bearer #{token.get}"
-          if Quovo.current_scope[:advisor].present?
+          if Quovo.current_scope[:advisor_id].present?
             req['Advisor'] = Quovo.current_scope[:advisor_id].to_s
           end
           req
