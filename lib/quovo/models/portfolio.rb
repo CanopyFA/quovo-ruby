@@ -18,8 +18,9 @@ module Quovo
           Thrift\ Savings\ Plan
           UGMA UTMA
           Variable\ Annuity
+          RRSP RESP RRIF LIRA LRSP LRIF LIF RLIF TFSA RDSP PRIF
         ),
-        'Banking'    => %w(Certificate\ of\ Deposit Checking Credit\ Card Savings),
+        'Banking'    => %w(Certificate\ of\ Deposit Checking Credit\ Card Savings Misc.\ Banking),
         'Insurance'  => %w(
           Annuity Fixed\ Annuity Insurance
           Term\ Life\ Insurance
@@ -27,7 +28,7 @@ module Quovo
           Variable\ Life\ Insurance
           Whole\ Life\ Insurance
         ),
-        'Loan'       => %w(Auto\ Loan Loan Mortgage Student\ Loan),
+        'Loan'       => %w(Auto\ Loan Loan Mortgage Student\ Loan HELOC),
         'Other'      => %w(Alternative Limited\ Partnership Misc Real\ Estate),
         'Unknown'    => %w(Unknown)
       }.freeze
