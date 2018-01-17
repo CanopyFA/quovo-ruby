@@ -13,6 +13,7 @@ module Quovo
         image
         choices
         image_choices
+        id
       )
 
       undef :image
