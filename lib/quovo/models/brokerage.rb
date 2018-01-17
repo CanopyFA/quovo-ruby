@@ -11,6 +11,7 @@ module Quovo
         website
         popularity_score
         status
+        country_code
       )
     end
   end
