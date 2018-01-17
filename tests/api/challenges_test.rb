@@ -24,6 +24,28 @@ class TestApiChallenges < TestApi
     assert_content(expected, actual)
   end
 
+  def test_find_challenge
+    id = 1
+    expected = simple_challenge(id)
+    fake(:get, "/challenges/#{id}", {}, 'challenge' => expected)
+
+    actual = Quovo.challenges.find(id)
+    assert_type([actual], Quovo::Models::Challenge)
+    assert_content([expected], [actual])
+  end
+
+  def test_challenge_answer!
+    id       = 1
+    answer   = { question: 'What is your favourite color?', answer: 'cyan' }
+    params   = { answer: answer.to_json }
+    expected = simple_challenge(id)
+    fake(:put, "/challenges/#{id}", params, 'challenge' => expected)
+
+    actual = Quovo.challenges.answer!(id, answer)
+    assert_type([actual], Quovo::Models::Challenge)
+    assert_content([expected], [actual])
+  end
+
   # helpers
   def challenge(*args)
     instance(Quovo::Models::Challenge, *args)
