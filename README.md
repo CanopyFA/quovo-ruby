@@ -193,6 +193,11 @@ Hook is a registered callback that invokes when web request happens.
   client.webhooks.delete(name)
 ```
 
+### Extras
+```ruby
+  client.extras.for_portfolio(portfolio_id)
+```
+
 
 ## Contributors
 * Canopy Financials [https://www.canopyfa.com](https://www.canopyfa.com)
