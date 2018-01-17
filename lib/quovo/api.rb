@@ -35,5 +35,9 @@ module Quovo
     def webhooks
       @webhooks ||= Quovo::Api::Webhooks.new
     end
+
+    def extras
+      @extras ||= Quovo::Api::Extras.new
+    end
   end
 end
