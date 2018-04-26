@@ -10,7 +10,7 @@ module Quovo
           Health\ Reimbursement\ Arrangement
           Health\ Savings\ Account
           IRA
-          Minor\ Custodial\ Account	
+          Minor\ Custodial\ Account
           Non-Taxable\ Brokerage\ Account
           Pension
           Profit\ Sharing\ Plan

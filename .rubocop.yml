@@ -19,3 +19,9 @@ Metrics/AbcSize:
   Exclude:
     - 'bin/console'
     - 'tests/**'
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+Style/ExpandPathArguments:
+  Enabled: false
