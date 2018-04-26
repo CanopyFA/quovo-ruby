@@ -10,6 +10,7 @@ module Quovo
           Health\ Reimbursement\ Arrangement
           Health\ Savings\ Account
           IRA
+          Minor\ Custodial\ Account	
           Non-Taxable\ Brokerage\ Account
           Pension
           Profit\ Sharing\ Plan
@@ -19,6 +20,7 @@ module Quovo
           UGMA UTMA
           Variable\ Annuity
           RRSP RESP RRIF LIRA LRSP LRIF LIF RLIF TFSA RDSP PRIF
+          ISA SIPP
         ),
         'Banking'    => %w(Certificate\ of\ Deposit Checking Credit\ Card Savings Misc.\ Banking),
         'Insurance'  => %w(
