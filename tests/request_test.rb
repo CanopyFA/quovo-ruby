@@ -85,6 +85,13 @@ class TestRequest < Minitest::Test
     end
   end
 
+  def test_request_rate_limit
+    http_transport.code = '429'
+    assert_raises(Quovo::RateLimitError) do
+      request(:get, '/accounts', {})
+    end
+  end
+
   def test_request_server_error
     http_transport.code = '500'
     assert_raises(Quovo::HttpError) do
