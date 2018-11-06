@@ -65,6 +65,7 @@ module Quovo
       body        = response.body
       raise Quovo::NotFoundError,  body if status_code =~ /404/
       raise Quovo::ForbiddenError, body if status_code =~ /403/
+      raise Quovo::RateLimitError, body if status_code =~ /429/
       raise Quovo::HttpError,      body if status_code =~ /^[45]/
       payload = format == :json ? JSON.parse(body) : body
       [status_code, payload]
