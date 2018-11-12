@@ -21,6 +21,7 @@ module Quovo
           Variable\ Annuity
           RRSP RESP RRIF LIRA LRSP LRIF LIF RLIF TFSA RDSP PRIF
           ISA SIPP
+          Cash\ ISA
         ),
         'Banking'    => %w(Certificate\ of\ Deposit Checking Credit\ Card Savings Misc.\ Banking),
         'Insurance'  => %w(
