@@ -1,42 +1,44 @@
 module Quovo
   module Api
     class Users < Base
-      using Quovo::Refinements::Cast
-      using Quovo::Refinements::Require
-      using Quovo::Refinements::Permit
+      include Quovo::Utils::Cast
+      include Quovo::Utils::Require
+      include Quovo::Utils::Permit
 
       def all
-        api(:get, '/users')
-          .fetch('users')
-          .cast(User)
+        cast(
+          api(:get, '/users').fetch('users'),
+          User
+        )
       end
 
       def find(id)
-        id.require!(as: :id)
-        api(:get, "/users/#{id}")
-          .fetch('user')
-          .cast(User)
+        require!(id, as: :id)
+        cast(
+          api(:get, "/users/#{id}").fetch('user'),
+          User
+        )
       end
 
       def create(params)
-        params
-          .permit!(:username, :name, :email, :phone)
-          .require!(:username)
-        api(:post, '/users', params)
-          .fetch('user')
-          .cast(User)
+        require!(permit!(params, :username, :name, :email, :phone), :username)
+        cast(
+          api(:post, '/users', params).fetch('user'),
+          User
+        )
       end
 
       def update(id, params)
-        id.require!(as: :id)
-        params.permit!(:name, :email, :phone)
-        api(:put, "/users/#{id}", params)
-          .fetch('user')
-          .cast(User)
+        require!(id, as: :id)
+        permit!(params, :name, :email, :phone)
+        cast(
+          api(:put, "/users/#{id}", params).fetch('user'),
+          User
+        )
       end
 
       def delete(id)
-        id.require!(as: :id)
+        require!(id, as: :id)
         api(:delete, "/users/#{id}")
       end
     end

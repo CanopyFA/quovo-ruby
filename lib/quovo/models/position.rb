@@ -1,7 +1,7 @@
 module Quovo
   module Models
     class Position < Base
-      using Quovo::Refinements::ToTime
+      include Quovo::Utils::ToTime
 
       fields %i(
         account
@@ -32,7 +32,7 @@ module Quovo
 
       undef :last_purchase_date
       def last_purchase_date
-        @last_purchase_date.to_time
+        to_time(@last_purchase_date)
       end
     end
   end

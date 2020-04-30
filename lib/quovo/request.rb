@@ -1,7 +1,5 @@
 module Quovo
   module Request
-    using Quovo::Refinements::Sensitive
-
     def request(method, path, params = {}, format = :plain, config = Quovo.config)
       return fake_request(method, path, params, &Proc.new) if Quovo.fake?
 
@@ -79,7 +77,7 @@ module Quovo
     end
 
     def strip_sensitive(data, config)
-      config.strip_sensitive_params ? data.strip_sensitive : data
+      config.strip_sensitive_params ? Quovo::Utils::Sensitive.strip_sensitive(data) : data
     end
 
     class FakeRequest

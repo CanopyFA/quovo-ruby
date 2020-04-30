@@ -1,20 +1,16 @@
 module Quovo
   module Api
     class Brokerages < Base
-      using Quovo::Refinements::Cast
-      using Quovo::Refinements::Require
+      include Quovo::Utils::Cast
+      include Quovo::Utils::Require
 
       def all
-        api(:get, '/brokerages')
-          .fetch('brokerages')
-          .cast(Brokerage)
+        cast(api(:get, '/brokerages').fetch('brokerages'), Brokerage)
       end
 
       def find(id)
-        id.require!(as: :id)
-        api(:get, "/brokerages/#{id}")
-          .fetch('brokerage')
-          .cast(Brokerage)
+        require!(id, as: :id)
+        cast(api(:get, "/brokerages/#{id}").fetch('brokerage'), Brokerage)
       end
     end
   end

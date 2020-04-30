@@ -1,36 +1,40 @@
 module Quovo
   module Api
     class Webhooks < Base
-      using Quovo::Refinements::Cast
-      using Quovo::Refinements::Require
-      using Quovo::Refinements::Permit
+      include Quovo::Utils::Cast
+      include Quovo::Utils::Require
+      include Quovo::Utils::Permit
 
       def all
-        api(:get, '/webhooks')
-          .fetch('webhooks')
-          .cast(Webhook)
+        cast(
+          api(:get, '/webhooks').fetch('webhooks'),
+          Webhook
+        )
       end
 
       def create(params)
-        params
-          .permit!(:events, :is_active, :secret, :name, :url)
-          .require!(:secret, :name, :url)
-        api(:post, '/webhooks', params)
-          .fetch('webhook')
-          .cast(Webhook)
+        require!(
+          permit!(params, :events, :is_active, :secret, :name, :url),
+          :secret, :name, :url
+        )
+        cast(
+          api(:post, '/webhooks', params).fetch('webhook'),
+          Webhook
+        )
       end
 
       def update(name, params)
-        name.require!(as: :name)
-        params.permit!(:events, :is_active, :secret, :url)
+        require!(name, as: :name)
+        permit!(params, :events, :is_active, :secret, :url)
         params[:name] = name
-        api(:put, '/webhooks', params)
-          .fetch('webhook')
-          .cast(Webhook)
+        cast(
+          api(:put, '/webhooks', params).fetch('webhook'),
+          Webhook
+        )
       end
 
       def delete(name)
-        name.require!(as: :name)
+        require!(name, as: :name)
         api(:delete, '/webhooks', name: name)
       end
     end

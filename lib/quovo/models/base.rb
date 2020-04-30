@@ -3,6 +3,7 @@ module Quovo
     class Base
       extend ::Forwardable
       def_delegators :to_h, :fetch, :to_json
+
       def self.fields(fields = nil)
         if fields
           @fields = fields.map(&:to_sym)

@@ -1,7 +1,7 @@
 module Quovo
   module Models
     class Challenge < Base
-      using Quovo::Refinements::Cast
+      include Quovo::Utils::Cast
 
       fields %i(
         account
@@ -18,17 +18,17 @@ module Quovo
 
       undef :image
       def image
-        @image.cast(Image)
+        cast(@image, Image)
       end
 
       undef :choices
       def choices
-        @choices.cast(Choice)
+        cast(@choices, Choice)
       end
 
       undef :image_choices
       def image_choices
-        @image_choices.cast(Image)
+        cast(@image_choices, Image)
       end
     end
   end
